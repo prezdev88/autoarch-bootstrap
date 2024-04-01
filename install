@@ -17,6 +17,7 @@ yay_install() {
 
 install_minimal_apps() {
     packages=(
+        base-devel
         chromium
         gstreamer
         gst-plugins-ugly
@@ -24,13 +25,11 @@ install_minimal_apps() {
         exfat-utils
         fuse-exfat
         xscreensaver
-        microsoft-edge-stable-bin
         fish
         pamac
         nano
         i3
         neofetch
-        base-devel
         htop
         rofi
         dmenu
@@ -42,6 +41,8 @@ install_minimal_apps() {
         mousepad
         nitrogen
         network-manager-applet
+        thunar
+        picom
     )
 
     yay -S --noconfirm "${packages[@]}"
@@ -52,6 +53,7 @@ install_complete_apps() {
         visual-studio-code-bin
         jdk8-openjdk
         google-chrome
+        microsoft-edge-stable-bin
         brave-bin
         intellij-idea-community-edition
         intellij-idea-ultimate-edition
@@ -91,9 +93,6 @@ config_dunst() {
 
 # Función para configurar picom
 config_picom() {
-    # Instalar picom
-    sudo pacman -S --noconfirm picom
-
     # Realizar copia de seguridad del archivo de configuración existente, si lo hay
     if [ -f "/etc/xdg/picom.conf" ]; then
         sudo mv /etc/xdg/picom.conf /etc/xdg/picom.conf.bak
