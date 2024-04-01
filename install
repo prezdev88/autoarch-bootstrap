@@ -47,6 +47,7 @@ install_minimal_apps() {
         octopi-notifier-qt5
     )
 
+    yay -Sy
     yay -S --noconfirm "${packages[@]}"
 }
 
