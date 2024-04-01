@@ -9,27 +9,6 @@ yay_install() {
 }
 
 install_apps() {
-    programas=(
-        nano
-        i3
-        neofetch
-        base-devel
-        htop
-        rofi
-        dmenu
-        xfce4-terminal
-        clipit
-        flameshot
-        udiskie
-        dunst
-        mousepad
-    )
-
-    sudo pacman -Sy --noconfirm
-    sudo pacman -S --noconfirm "${programas[@]}"
-}
-
-install_yay_packages() {
     packages=(
         jdk8-openjdk
         google-chrome
@@ -53,6 +32,19 @@ install_yay_packages() {
         microsoft-edge-stable-bin
         fish
         pamac
+        nano
+        i3
+        neofetch
+        base-devel
+        htop
+        rofi
+        dmenu
+        xfce4-terminal
+        clipit
+        flameshot
+        udiskie
+        dunst
+        mousepad
     )
 
     yay -S --noconfirm "${packages[@]}"
@@ -151,12 +143,8 @@ exec i3
 EOF
 }
 
-# Llamar a la función para configurar picom
-configurar_picom
-
-install_apps
 yay_install
-install_yay_packages
+install_apps
 config_dunst
 config_picom
 create_xinitrc
