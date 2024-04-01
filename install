@@ -1,18 +1,27 @@
 #!/bin/bash
+sudo -v
 
 yay_install() {
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
-    cd -
-    rm -rf yay
+    # Verificar si yay ya está instalado
+    if ! command -v yay &>/dev/null; then
+        echo "yay is not installed. Installing..."
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si --noconfirm
+        cd -
+        rm -rf yay
+    else
+        echo "yay is already installed."
+    fi
 }
 
 install_apps() {
     packages=(
+        visual-studio-code-bin
         jdk8-openjdk
         google-chrome
-        vscodium-bin
+        brave-bin
+        chromium
         intellij-idea-community-edition
         intellij-idea-ultimate-edition
         intellij-idea-ultimate-edition-jre
@@ -23,8 +32,6 @@ install_apps() {
         ntfs-3g
         exfat-utils
         fuse-exfat
-        brave-bin
-        chromium
         gitahead-bin
         discord
         slack-desktop
@@ -51,13 +58,27 @@ install_apps() {
 }
 
 install_fish() {
-    curl -L https://get.oh-my.fish | fish
-    omf theme
-    omf install agnoster
+    # Verificar si fish ya está instalado
+    if which fish &>/dev/null; then
+        echo "Fish is already installed."
+    else
+        # Si fish no está instalado, instalarlo y configurarlo
+        curl -L https://get.oh-my.fish | fish
+        omf install agnoster
+    fi
 }
 
 config_dunst() {
-    mkdir -p ~/.config/dunst && echo -e "[global]\nfont = Sans 15" > ~/.config/dunst/dunstrc 
+    local dunstrc_path="$HOME/.config/dunst/dunstrc"
+    
+    # Verificar si el archivo dunstrc ya existe
+    if [ -f "$dunstrc_path" ]; then
+        echo "The dunst configuration file already exists."
+    else
+        # Si el archivo dunstrc no existe, crearlo y configurarlo
+        mkdir -p ~/.config/dunst && echo -e "[global]\nfont = Sans 15" > "$dunstrc_path"
+        echo "The dunst configuration file has been created."
+    fi
 }
 
 # Función para configurar picom
