@@ -43,6 +43,8 @@ install_minimal_apps() {
         network-manager-applet
         thunar
         picom
+        octopi
+        octopi-notifier-qt5
     )
 
     yay -S --noconfirm "${packages[@]}"
@@ -166,6 +168,7 @@ dunst &
 picom &
 xscreensaver &
 pamac-tray &
+usr/bin/octopi-notifier &
 
 exec i3
 EOF
