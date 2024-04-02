@@ -77,8 +77,8 @@ isntall_oh_my_fish() {
     git clone https://github.com/oh-my-fish/oh-my-fish
     cd oh-my-fish/bin
     chmod +x install
-    ./install --offline
-    omf install agnoster
+    ./install --noninteractive
+    fish -c "omf install agnoster"
 }
 
 config_dunst() {
@@ -203,8 +203,7 @@ copy_i3_config_file() {
 }
 
 yay_install
-
-install_minimal_apps
+isntall_oh_my_fish
 
 if [ "$1" == "complete" ]; then
     install_complete_apps
