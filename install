@@ -46,6 +46,7 @@ install_minimal_apps() {
         octopi-notifier-qt5
         ttf-hack-nerd
         python-requests
+        fish
     )
 
     yay -Sy
@@ -71,16 +72,13 @@ install_complete_apps() {
     yay -S --noconfirm "${packages[@]}"
 }
 
-install_fish() {
-    # Verificar si fish ya está instalado
-    if which fish &>/dev/null; then
-        echo "Fish is already installed."
-    else
-        # Si fish no está instalado, instalarlo y configurarlo
-        cd ~
-        yay -S --noconfirm fish
-        curl -L https://get.oh-my.fish | fish -c "omf install agnoster"
-    fi
+isntall_oh_my_fish() {
+    cd ~
+    git clone https://github.com/oh-my-fish/oh-my-fish
+    cd oh-my-fish/bin
+    chmod +x install
+    ./install --offline
+    omf install agnoster
 }
 
 config_dunst() {
@@ -218,4 +216,4 @@ create_xinitrc
 generate_xfce4_terminal_config
 install_bumblebee_status
 copy_i3_config_file
-install_fish
+isntall_oh_my_fish
