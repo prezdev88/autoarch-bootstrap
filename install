@@ -108,18 +108,11 @@ create_xinitrc() {
 generate_xfce4_terminal_config() {
     local config_dir="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml"
     local config_file="$config_dir/xfce4-terminal.xml"
-    local config_content='<?xml version="1.0" encoding="UTF-8"?>
 
-<channel name="xfce4-terminal" version="1.0">
-  <property name="run-custom-command" type="bool" value="true"/>
-  <property name="custom-command" type="string" value="/bin/fish"/>
-  <property name="command-login-shell" type="bool" value="false"/>
-</channel>
-'
-
-    mkdir -p "$config_dir" || { echo "Error: Unable to create directory $config_dir"; exit 1; }
-    echo "$config_content" > "$config_file" || { echo "Error: Unable to create file $config_file"; exit 1; }
-    echo "Xfce4-terminal configuration file generated at: $config_file"
+    mkdir -p "$config_dir"
+    cd $script_dir
+    cp xfce4-terminal.xml $config_file
+    echo "File created at $config_file"
 }
 
 install_bumblebee_status() {
