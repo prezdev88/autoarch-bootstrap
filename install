@@ -97,7 +97,7 @@ config_dunst() {
 config_picom() {
     sudo rm /etc/xdg/picom.conf
     cd $script_dir
-    cp picom.conf /etc/xdg/picom.conf
+    sudo cp picom.conf /etc/xdg/picom.conf
 }
 
 create_xinitrc() {
