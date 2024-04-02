@@ -1,0 +1,12 @@
+setxkbmap -layout es
+
+nm-applet &
+clipit &
+flameshot &
+udiskie --tray &
+dunst &
+picom &
+xscreensaver &
+/usr/bin/octopi-notifier &
+
+exec i3

@@ -101,20 +101,8 @@ config_picom() {
 }
 
 create_xinitrc() {
-    cat <<EOF >"$HOME/.xinitrc"
-setxkbmap -layout es
-
-nm-applet &
-clipit &
-flameshot &
-udiskie --tray &
-dunst &
-picom &
-xscreensaver &
-/usr/bin/octopi-notifier &
-
-exec i3
-EOF
+    cd $script_dir
+    cp xinitrc ~/.xinitrc
 }
 
 generate_xfce4_terminal_config() {
@@ -145,13 +133,16 @@ copy_i3_config_file() {
     cp i3/config ~/.config/i3/config
 }
 
+install_apps() {
+    install_minimal_apps
+
+    if [ "$1" == "complete" ]; then
+        install_complete_apps
+    fi
+}
+
 yay_install
-install_minimal_apps
-
-if [ "$1" == "complete" ]; then
-    install_complete_apps
-fi
-
+install_apps
 config_dunst
 config_picom
 create_xinitrc
