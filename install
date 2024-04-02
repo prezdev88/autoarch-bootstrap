@@ -72,7 +72,7 @@ install_complete_apps() {
     yay -S --noconfirm "${packages[@]}"
 }
 
-isntall_oh_my_fish() {
+install_oh_my_fish() {
     cd ~
     git clone https://github.com/oh-my-fish/oh-my-fish
     cd oh-my-fish/bin
@@ -203,7 +203,7 @@ copy_i3_config_file() {
 }
 
 yay_install
-isntall_oh_my_fish
+install_minimal_apps
 
 if [ "$1" == "complete" ]; then
     install_complete_apps
@@ -215,4 +215,4 @@ create_xinitrc
 generate_xfce4_terminal_config
 install_bumblebee_status
 copy_i3_config_file
-isntall_oh_my_fish
+install_oh_my_fish
