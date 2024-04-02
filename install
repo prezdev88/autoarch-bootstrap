@@ -17,58 +17,24 @@ yay_install() {
 }
 
 install_minimal_apps() {
-    packages=(
-        base-devel
-        chromium
-        gstreamer
-        gst-plugins-ugly
-        ntfs-3g
-        exfat-utils
-        fuse-exfat
-        xscreensaver
-        nano
-        i3
-        neofetch
-        htop
-        rofi
-        dmenu
-        xfce4-terminal
-        clipit
-        flameshot
-        udiskie
-        dunst
-        mousepad
-        nitrogen
-        network-manager-applet
-        thunar
-        picom
-        octopi
-        octopi-notifier-qt5
-        ttf-hack-nerd
-        python-requests
-        fish
-    )
+    declare -a packages
+
+    while IFS= read -r line; do
+        packages+=("$line")
+    done < apps/minimal
 
     yay -Sy
     yay -S --noconfirm "${packages[@]}"
 }
 
-install_complete_apps() {
-    packages=(
-        visual-studio-code-bin
-        jdk8-openjdk
-        google-chrome
-        microsoft-edge-stable-bin
-        brave-bin
-        intellij-idea-community-edition
-        intellij-idea-ultimate-edition
-        intellij-idea-ultimate-edition-jre
-        dbeaver
-        maven
-        discord
-        slack-desktop
-    )
+install_extra_apps() {
+    declare -a packages
 
+    while IFS= read -r line; do
+        packages+=("$line")
+    done < apps/extra
+
+    yay -Sy
     yay -S --noconfirm "${packages[@]}"
 }
 
@@ -129,8 +95,8 @@ copy_i3_config_file() {
 install_apps() {
     install_minimal_apps
 
-    if [ "$1" == "complete" ]; then
-        install_complete_apps
+    if [ "$1" == "extra" ]; then
+        install_extra_apps
     fi
 }
 
