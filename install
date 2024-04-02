@@ -26,7 +26,6 @@ install_minimal_apps() {
         exfat-utils
         fuse-exfat
         xscreensaver
-        pamac
         nano
         i3
         neofetch
@@ -45,6 +44,8 @@ install_minimal_apps() {
         picom
         octopi
         octopi-notifier-qt5
+        ttf-hack-nerd
+        python-requests
     )
 
     yay -Sy
@@ -78,8 +79,7 @@ install_fish() {
         # Si fish no está instalado, instalarlo y configurarlo
         cd ~
         yay -S --noconfirm fish
-        curl -L https://get.oh-my.fish | fish
-        omf install agnoster
+        curl -L https://get.oh-my.fish | fish -c "omf install agnoster"
     fi
 }
 
@@ -170,7 +170,6 @@ udiskie --tray &
 dunst &
 picom &
 xscreensaver &
-pamac-tray &
 /usr/bin/octopi-notifier &
 
 exec i3
@@ -201,6 +200,7 @@ install_bumblebee_status() {
 
 copy_i3_config_file() {
     cd $script_dir
+    mkdir -p ~/.config/i3
     cp i3/config ~/.config/i3/config
 }
 
