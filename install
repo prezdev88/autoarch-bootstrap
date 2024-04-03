@@ -100,6 +100,10 @@ install_apps() {
     fi
 }
 
+install_dark_theme() {
+    gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+}
+
 yay_install
 install_apps
 config_dunst
@@ -109,3 +113,4 @@ generate_xfce4_terminal_config
 install_bumblebee_status
 copy_i3_config_file
 install_oh_my_fish
+install_dark_theme
