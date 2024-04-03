@@ -101,7 +101,8 @@ install_apps() {
 }
 
 install_dark_theme() {
-    gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+    cd $script_dir
+    cp gtkrc-2.0 ~/.gtkrc-2.0
 }
 
 yay_install
