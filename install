@@ -103,7 +103,7 @@ install_apps() {
 yay_install
 install_apps
 config_dunst
-config_picom
+# config_picom
 create_xinitrc
 generate_xfce4_terminal_config
 install_bumblebee_status

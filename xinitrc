@@ -5,7 +5,7 @@ clipit &
 flameshot &
 udiskie --tray &
 dunst &
-picom &
+# picom &
 xscreensaver &
 /usr/bin/octopi-notifier &
 
