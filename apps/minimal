@@ -1,6 +1,8 @@
 base-devel
 code
 chromium
+brave-bin
+microsoft-edge-stable
 gstreamer
 gst-plugins-ugly
 ntfs-3g
@@ -34,3 +36,4 @@ lxappearance
 arc-gtk-theme
 file-roller
 noto-fonts
+gdu
