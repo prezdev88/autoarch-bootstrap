@@ -16,6 +16,7 @@ dmenu
 xfce4-terminal
 clipit
 flameshot
+udisks2
 udiskie
 dunst
 mousepad
@@ -31,3 +32,4 @@ fish
 xclip
 lxappearance
 arc-gtk-theme
+file-roller

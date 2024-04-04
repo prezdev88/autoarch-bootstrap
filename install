@@ -105,6 +105,16 @@ install_dark_theme() {
     cp gtkrc-2.0 ~/.gtkrc-2.0
 }
 
+generate_neofetch_config() {
+    neofetch_config_dir="~/.config/neofetch"
+
+    if [ ! -d "$neofetch_config_dir" ]; then
+        mkdir -p "$neofetch_config_dir"
+    fi
+
+    cp neofetch.conf "$neofetch_config_dir/config.conf"
+}
+
 yay_install
 install_apps
 config_dunst
@@ -115,3 +125,4 @@ install_bumblebee_status
 copy_i3_config_file
 install_oh_my_fish
 install_dark_theme
+generate_neofetch_config
