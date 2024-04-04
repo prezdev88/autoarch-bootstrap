@@ -241,7 +241,7 @@ bindsym Print exec flameshot gui
 # exec --no-startup-id i3-msg 'workspace 2; exec slack'
 # exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-stable'
 # exec /usr/bin/octopi-notifier
-# exec nitrogen --restore
+exec nitrogen --restore
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577

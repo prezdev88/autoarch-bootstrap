@@ -116,8 +116,18 @@ generate_neofetch_config() {
     cp neofetch.conf "$neofetch_config_dir/config.conf"
 }
 
-add_neofetch_in_bashrc() {
+add_neofetch_in_terminals() {
     echo "neofetch" >> ~/.bashrc
+    echo "neofetch" >> ~/.config/fish/config.fish
+}
+
+put_wallpaper() {
+    cd $script_dir
+    mkdir ~/images
+    cp wall.png ~/images/wall.png
+
+    mkdir ~./.config/nitrogen
+    cp nitrogen-save.cfg ~./.config/nitrogen/bg-saved.cfg
 }
 
 yay_install
@@ -131,4 +141,5 @@ copy_i3_config_file
 install_oh_my_fish
 install_dark_theme
 generate_neofetch_config
-add_neofetch_in_bashrc
+add_neofetch_in_terminals
+put_wallpaper
