@@ -106,7 +106,7 @@ install_dark_theme() {
 }
 
 generate_neofetch_config() {
-    neofetch_config_dir="~/.config/neofetch"
+    neofetch_config_dir=~/.config/neofetch
 
     if [ ! -d "$neofetch_config_dir" ]; then
         mkdir -p "$neofetch_config_dir"
