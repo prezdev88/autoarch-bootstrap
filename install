@@ -127,7 +127,7 @@ put_wallpaper() {
     cp wall.png ~/images/wall.png
 
     mkdir ~/.config/nitrogen
-    cp nitrogen-save.cfg ~./.config/nitrogen/bg-saved.cfg
+    cp nitrogen-save.cfg ~/.config/nitrogen/bg-saved.cfg
 }
 
 yay_install
