@@ -122,12 +122,11 @@ add_neofetch_in_terminals() {
 }
 
 put_wallpaper() {
+    cd $script_dir
     mkdir ~/images
     cp wall.png ~/images/wall.png
 
-    cd ~./.config
-    mkdir nitrogen
-    cd $script_dir
+    mkdir ~/.config/nitrogen
     cp nitrogen-save.cfg ~./.config/nitrogen/bg-saved.cfg
 }
 
