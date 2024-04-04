@@ -116,6 +116,10 @@ generate_neofetch_config() {
     cp neofetch.conf "$neofetch_config_dir/config.conf"
 }
 
+add_neofetch_in_bashrc() {
+    echo "neofetch" >> ~/.bashrc
+}
+
 yay_install
 install_apps
 config_dunst
@@ -127,3 +131,4 @@ copy_i3_config_file
 install_oh_my_fish
 install_dark_theme
 generate_neofetch_config
+add_neofetch_in_bashrc
