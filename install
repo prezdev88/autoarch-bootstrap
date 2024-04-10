@@ -56,7 +56,9 @@ config_dunst() {
         echo "The dunst configuration file already exists."
     else
         # Si el archivo dunstrc no existe, crearlo y configurarlo
-        mkdir -p ~/.config/dunst && echo -e "[global]\nfont = Sans 15" > "$dunstrc_path"
+        mkdir -p ~/.config/dunst
+        cd $script_dir
+        cp dunstrc $dunstrc_path
         echo "The dunst configuration file has been created."
     fi
 }
