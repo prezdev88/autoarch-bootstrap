@@ -140,6 +140,11 @@ create_browser_apps() {
     sudo sh -c 'echo "microsoft-edge-stable --app=https://music.youtube.com" > /bin/ytmusic && chmod +x /bin/ytmusic'
 }
 
+install_redshift() {
+    cd $script_dir
+    cp redshift.conf ~/.config/redshift.conf
+}
+
 yay_install
 install_apps
 config_dunst
@@ -154,3 +159,4 @@ generate_neofetch_config
 add_neofetch_in_terminals
 put_wallpaper
 create_browser_apps
+install_redshift
