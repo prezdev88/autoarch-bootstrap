@@ -195,7 +195,7 @@ bar {
 	-m weather -p weather.location=talca \
 	-m kernel disk \
 	memory aur-update arch-update date -p date.format='%a, %d %b %Y' \
-	-m time -p time.format='%H:%M'
+	-m time -p time.format='%H:%M' -m battery
 	# position top
 	tray_output primary
 	colors {
