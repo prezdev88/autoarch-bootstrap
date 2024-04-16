@@ -145,8 +145,15 @@ install_redshift() {
     cp redshift.conf ~/.config/redshift.conf
 }
 
+create_lock_script() {
+    cd $script_dir
+    sudo cp lock /bin/lock
+    chmod +x /bin/lock
+}
+
 yay_install
 install_apps
+create_lock_script
 config_dunst
 # config_picom
 create_xinitrc
