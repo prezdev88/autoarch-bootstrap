@@ -1,0 +1,5 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+mkdir -p ~/.config/i3
+cp $script_dir/config ~/.config/i3/config

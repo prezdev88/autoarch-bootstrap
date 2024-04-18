@@ -18,12 +18,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-copy_i3_config_file() {
-    cd $script_dir
-    mkdir -p ~/.config/i3
-    cp i3/config ~/.config/i3/config
-}
-
 install_dark_theme() {
     cd $script_dir
     cp gtkrc-2.0 ~/.gtkrc-2.0
@@ -70,7 +64,7 @@ fi
 ./xinitrc/install
 ./xfce4-terminal-config/install
 ./bumblebee-status/install
-copy_i3_config_file
+./i3/install
 install_oh_my_fish
 install_dark_theme
 generate_neofetch_config
