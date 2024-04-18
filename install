@@ -92,12 +92,6 @@ install_redshift() {
     cp redshift.conf ~/.config/redshift.conf
 }
 
-create_lock_script() {
-    cd $script_dir
-    sudo cp lock /bin/lock
-    chmod +x /bin/lock
-}
-
 ./yay/install
 ./apps/minimal-install
 
@@ -105,7 +99,7 @@ if [ "$1" == "extra" ]; then
     ./apps/extra-install
 fi
 
-create_lock_script
+./lock/install
 config_dunst
 # config_picom
 create_xinitrc
