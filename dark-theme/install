@@ -1,0 +1,4 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+cp $script_dir/gtkrc-2.0 ~/.gtkrc-2.0

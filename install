@@ -9,11 +9,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-install_dark_theme() {
-    cd $script_dir
-    cp gtkrc-2.0 ~/.gtkrc-2.0
-}
-
 generate_neofetch_config() {
     neofetch_config_dir=~/.config/neofetch
 
@@ -57,7 +52,7 @@ fi
 ./bumblebee-status/install
 ./i3/install
 ./oh-my-fish/install
-install_dark_theme
+./dark-theme/install
 generate_neofetch_config
 add_neofetch_in_terminals
 ./nitrogen/install
