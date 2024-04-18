@@ -1,0 +1,5 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+sudo rm /etc/xdg/picom.conf
+sudo cp $script_dir/picom.conf /etc/xdg/picom.conf

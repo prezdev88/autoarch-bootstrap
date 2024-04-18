@@ -3,12 +3,6 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 sudo -v
 sudo pacman -Sy
 
-config_picom() {
-    sudo rm /etc/xdg/picom.conf
-    cd $script_dir
-    sudo cp picom.conf /etc/xdg/picom.conf
-}
-
 ./yay/install
 ./apps/minimal-install
 
@@ -18,7 +12,7 @@ fi
 
 ./lock/install
 ./dunst/install
-# config_picom
+# ./picom/install
 ./xinitrc/install
 ./xfce4-terminal-config/install
 ./bumblebee-status/install
