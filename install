@@ -3,20 +3,6 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 sudo -v
 sudo pacman -Sy
 
-yay_install() {
-    # Verificar si yay ya está instalado
-    if ! command -v yay &>/dev/null; then
-        echo "yay is not installed. Installing..."
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si --noconfirm
-        cd -
-        rm -rf yay
-    else
-        echo "yay is already installed."
-    fi
-}
-
 install_minimal_apps() {
     declare -a packages
 
@@ -142,7 +128,7 @@ create_lock_script() {
     chmod +x /bin/lock
 }
 
-yay_install
+./yay/install
 install_apps
 create_lock_script
 config_dunst
