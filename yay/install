@@ -3,11 +3,8 @@
 # Verificar si yay ya está instalado
 if ! command -v yay &>/dev/null; then
     echo "yay is not installed. Installing..."
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
-    cd -
-    rm -rf yay
+    git clone https://aur.archlinux.org/yay.git $HOME
+    makepkg -si --noconfirm -p $HOME/yay
 else
     echo "yay is already installed."
 fi

@@ -8,5 +8,4 @@ while IFS= read -r line; do
 done < $script_dir/minimal
 
 yay -Sy
-# yay -S --noconfirm "${packages[@]}"
-yay -S "${packages[@]}"
+yay -S --noconfirm "${packages[@]}"
