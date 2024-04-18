@@ -1,7 +1,10 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
-git clone https://github.com/oh-my-fish/oh-my-fish $HOME
+cd $HOME
+git clone https://github.com/oh-my-fish/oh-my-fish
 chmod +x $HOME/oh-my-fish/bin/install
-sh $HOME/oh-my-fish/bin/install --noninteractive
+cd $HOME/oh-my-fish/bin
+./install --noninteractive
 fish -c "omf install agnoster"
+cd $HOME/autoarch-bootstrap

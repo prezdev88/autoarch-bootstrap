@@ -1,3 +1,4 @@
 #!/bin/bash
-
-git clone https://github.com/tobi-wan-kenobi/bumblebee-status ~/.config
+cd ~/.config
+git clone https://github.com/tobi-wan-kenobi/bumblebee-status
+cd $HOME/autoarch-bootstrap
