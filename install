@@ -9,16 +9,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-generate_neofetch_config() {
-    neofetch_config_dir=~/.config/neofetch
-
-    if [ ! -d "$neofetch_config_dir" ]; then
-        mkdir -p "$neofetch_config_dir"
-    fi
-
-    cp neofetch.conf "$neofetch_config_dir/config.conf"
-}
-
 add_neofetch_in_terminals() {
     echo "neofetch" >> ~/.bashrc
     echo "neofetch" >> ~/.config/fish/config.fish
@@ -53,7 +43,7 @@ fi
 ./i3/install
 ./oh-my-fish/install
 ./dark-theme/install
-generate_neofetch_config
+./neofetch/install
 add_neofetch_in_terminals
 ./nitrogen/install
 create_browser_apps
