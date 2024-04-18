@@ -9,11 +9,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-install_redshift() {
-    cd $script_dir
-    cp redshift.conf ~/.config/redshift.conf
-}
-
 ./yay/install
 ./apps/minimal-install
 
@@ -34,4 +29,4 @@ fi
 ./neofetch/in-terminal/install
 ./nitrogen/install
 ./apps/browser/install
-install_redshift
+./redshift/install
