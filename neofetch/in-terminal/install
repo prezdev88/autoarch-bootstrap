@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "neofetch" >> ~/.bashrc
+echo "neofetch" >> ~/.config/fish/config.fish

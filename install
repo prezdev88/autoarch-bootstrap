@@ -9,11 +9,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-add_neofetch_in_terminals() {
-    echo "neofetch" >> ~/.bashrc
-    echo "neofetch" >> ~/.config/fish/config.fish
-}
-
 create_browser_apps() {
     sudo sh -c 'echo "chromium --app=https://youtube.com" > /bin/youtube && chmod +x /bin/youtube'
     sudo sh -c 'echo "chromium --app=https://www.notion.so/" > /bin/notion && chmod +x /bin/notion'
@@ -44,7 +39,7 @@ fi
 ./oh-my-fish/install
 ./dark-theme/install
 ./neofetch/install
-add_neofetch_in_terminals
+./neofetch/in-terminal/install
 ./nitrogen/install
 create_browser_apps
 install_redshift
