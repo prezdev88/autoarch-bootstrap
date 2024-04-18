@@ -123,15 +123,6 @@ add_neofetch_in_terminals() {
     echo "neofetch" >> ~/.config/fish/config.fish
 }
 
-put_wallpaper() {
-    cd $script_dir
-    mkdir ~/images
-    cp wall.png ~/images/wall.png
-
-    mkdir ~/.config/nitrogen
-    cp nitrogen-save.cfg ~/.config/nitrogen/bg-saved.cfg
-}
-
 create_browser_apps() {
     sudo sh -c 'echo "chromium --app=https://youtube.com" > /bin/youtube && chmod +x /bin/youtube'
     sudo sh -c 'echo "chromium --app=https://www.notion.so/" > /bin/notion && chmod +x /bin/notion'
@@ -164,6 +155,6 @@ install_oh_my_fish
 install_dark_theme
 generate_neofetch_config
 add_neofetch_in_terminals
-put_wallpaper
+./nitrogen/install
 create_browser_apps
 install_redshift
