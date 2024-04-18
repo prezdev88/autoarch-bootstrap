@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo sh -c 'echo "chromium --app=https://youtube.com" > /bin/youtube && chmod +x /bin/youtube'
+sudo sh -c 'echo "chromium --app=https://www.notion.so/" > /bin/notion && chmod +x /bin/notion'
+sudo sh -c 'echo "chromium --app=https://network.wwe.com/" > /bin/wwe && chmod +x /bin/wwe'
+sudo sh -c 'echo "chromium --app=https://chat.openai.com/" > /bin/gptchat && chmod +x /bin/gptchat'
+sudo sh -c 'echo "microsoft-edge-stable --app=https://music.youtube.com" > /bin/ytmusic && chmod +x /bin/ytmusic'

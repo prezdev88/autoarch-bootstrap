@@ -9,14 +9,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-create_browser_apps() {
-    sudo sh -c 'echo "chromium --app=https://youtube.com" > /bin/youtube && chmod +x /bin/youtube'
-    sudo sh -c 'echo "chromium --app=https://www.notion.so/" > /bin/notion && chmod +x /bin/notion'
-    sudo sh -c 'echo "chromium --app=https://network.wwe.com/" > /bin/wwe && chmod +x /bin/wwe'
-    sudo sh -c 'echo "chromium --app=https://chat.openai.com/" > /bin/gptchat && chmod +x /bin/gptchat'
-    sudo sh -c 'echo "microsoft-edge-stable --app=https://music.youtube.com" > /bin/ytmusic && chmod +x /bin/ytmusic'
-}
-
 install_redshift() {
     cd $script_dir
     cp redshift.conf ~/.config/redshift.conf
@@ -41,5 +33,5 @@ fi
 ./neofetch/install
 ./neofetch/in-terminal/install
 ./nitrogen/install
-create_browser_apps
+./apps/browser/install
 install_redshift
