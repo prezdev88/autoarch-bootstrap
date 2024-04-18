@@ -1,0 +1,7 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+mkdir ~/images
+cp $script_dir/wall.png ~/images/wall.png
+mkdir ~/.config/nitrogen
+cp $script_dir/nitrogen-save.cfg ~/.config/nitrogen/bg-saved.cfg
