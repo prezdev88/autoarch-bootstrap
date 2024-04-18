@@ -1,0 +1,12 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+declare -a packages
+
+while IFS= read -r line; do
+    packages+=("$line")
+done < $script_dir/minimal
+
+yay -Sy
+# yay -S --noconfirm "${packages[@]}"
+yay -S "${packages[@]}"

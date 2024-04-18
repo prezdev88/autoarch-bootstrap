@@ -3,28 +3,6 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 sudo -v
 sudo pacman -Sy
 
-install_minimal_apps() {
-    declare -a packages
-
-    while IFS= read -r line; do
-        packages+=("$line")
-    done < apps/minimal
-
-    yay -Sy
-    yay -S --noconfirm "${packages[@]}"
-}
-
-install_extra_apps() {
-    declare -a packages
-
-    while IFS= read -r line; do
-        packages+=("$line")
-    done < apps/extra
-
-    yay -Sy
-    yay -S --noconfirm "${packages[@]}"
-}
-
 install_oh_my_fish() {
     cd ~
     git clone https://github.com/oh-my-fish/oh-my-fish
@@ -81,14 +59,6 @@ copy_i3_config_file() {
     cp i3/config ~/.config/i3/config
 }
 
-install_apps() {
-    install_minimal_apps
-
-    if [ "$1" == "extra" ]; then
-        install_extra_apps
-    fi
-}
-
 install_dark_theme() {
     cd $script_dir
     cp gtkrc-2.0 ~/.gtkrc-2.0
@@ -129,7 +99,12 @@ create_lock_script() {
 }
 
 ./yay/install
-install_apps
+./apps/minimal-install
+
+if [ "$1" == "extra" ]; then
+    ./apps/extra-install
+fi
+
 create_lock_script
 config_dunst
 # config_picom
