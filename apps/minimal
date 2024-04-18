@@ -38,3 +38,4 @@ redshift
 brightnessctl
 pavucontrol
 man
+python-psutil

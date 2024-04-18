@@ -194,7 +194,7 @@ bar {
 	status_command ~/.config/bumblebee-status/bumblebee-status \
 	-t greyish-powerline \
 	-m weather -p weather.location=talca \
-	-m kernel disk \
+	-m kernel disk cpu \
 	memory aur-update arch-update date -p date.format='%a, %d %b %Y' \
 	-m time -p time.format='%H:%M' -m battery
 	# position top
