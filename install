@@ -12,21 +12,6 @@ install_oh_my_fish() {
     fish -c "omf install agnoster"
 }
 
-config_dunst() {
-    local dunstrc_path="$HOME/.config/dunst/dunstrc"
-    
-    # Verificar si el archivo dunstrc ya existe
-    if [ -f "$dunstrc_path" ]; then
-        echo "The dunst configuration file already exists."
-    else
-        # Si el archivo dunstrc no existe, crearlo y configurarlo
-        mkdir -p ~/.config/dunst
-        cd $script_dir
-        cp dunstrc $dunstrc_path
-        echo "The dunst configuration file has been created."
-    fi
-}
-
 config_picom() {
     sudo rm /etc/xdg/picom.conf
     cd $script_dir
@@ -100,7 +85,7 @@ if [ "$1" == "extra" ]; then
 fi
 
 ./lock/install
-config_dunst
+./dunst/install
 # config_picom
 create_xinitrc
 generate_xfce4_terminal_config
