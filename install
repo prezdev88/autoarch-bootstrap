@@ -3,15 +3,6 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 sudo -v
 sudo pacman -Sy
 
-install_oh_my_fish() {
-    cd ~
-    git clone https://github.com/oh-my-fish/oh-my-fish
-    cd oh-my-fish/bin
-    chmod +x install
-    ./install --noninteractive
-    fish -c "omf install agnoster"
-}
-
 config_picom() {
     sudo rm /etc/xdg/picom.conf
     cd $script_dir
@@ -65,7 +56,7 @@ fi
 ./xfce4-terminal-config/install
 ./bumblebee-status/install
 ./i3/install
-install_oh_my_fish
+./oh-my-fish/install
 install_dark_theme
 generate_neofetch_config
 add_neofetch_in_terminals
