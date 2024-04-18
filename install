@@ -18,16 +18,6 @@ config_picom() {
     sudo cp picom.conf /etc/xdg/picom.conf
 }
 
-generate_xfce4_terminal_config() {
-    local config_dir="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml"
-    local config_file="$config_dir/xfce4-terminal.xml"
-
-    mkdir -p "$config_dir"
-    cd $script_dir
-    cp xfce4-terminal.xml $config_file
-    echo "File created at $config_file"
-}
-
 install_bumblebee_status() {
     cd ~/.config
     git clone https://github.com/tobi-wan-kenobi/bumblebee-status
@@ -83,7 +73,7 @@ fi
 ./dunst/install
 # config_picom
 ./xinitrc/install
-generate_xfce4_terminal_config
+./xfce4-terminal-config/install
 install_bumblebee_status
 copy_i3_config_file
 install_oh_my_fish
