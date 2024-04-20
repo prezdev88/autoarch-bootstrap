@@ -1,0 +1,6 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+cp $script_dir/Xresources ~/.Xresources
+
+# Añadir xrdb .Xresources & en .xinitrc antes de exec i3

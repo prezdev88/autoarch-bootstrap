@@ -8,5 +8,6 @@ dunst &
 # picom &
 xscreensaver &
 /usr/bin/octopi-notifier &
+# xrdb .Xresources &
 
 exec i3
