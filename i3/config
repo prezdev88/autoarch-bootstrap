@@ -242,6 +242,7 @@ bindsym Print exec flameshot gui
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 bindsym $mod+plus exec kmag
+bindsym $mod+Shift+f exec search
 
 # exec --no-startup-id i3-msg 'workspace 2; exec slack'
 # exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-stable'

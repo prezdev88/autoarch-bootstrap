@@ -15,6 +15,7 @@ fi
 ./xinitrc/install
 ./xfce4-terminal-config/install
 ./bumblebee-status/install
+./search/install
 ./i3/install
 ./oh-my-fish/install
 ./dark-theme/install

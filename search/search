@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Directorio en el que buscar
+directory="$HOME"
+
+# Obtener la lista de archivos en el directorio y sus subdirectorios
+files=$(find "$directory" -type f)
+
+# Mostrar el menú y obtener la selección del usuario
+selected_file=$(echo "$files" | sed "s|$HOME/||" | dmenu -l 10 -p "Buscar archivo en $directory:")
+
+# Obtener la ruta completa del archivo seleccionado
+if [ -n "$selected_file" ]; then
+    full_path=$(find "$directory" -type f -wholename "*$selected_file" -print -quit)
+    if [ -n "$full_path" ]; then
+        echo "Abriendo $full_path..."
+        # Dependiendo de tu entorno, puedes usar xdg-open o el comando específico para abrir archivos
+        thunar "$(dirname "$full_path")" >/dev/null 2>&1 &
+    else
+        echo "El archivo no existe."
+    fi
+fi

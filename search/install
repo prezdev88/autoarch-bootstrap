@@ -1,0 +1,5 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+sudo cp $script_dir/search /usr/bin/search
+sudo chmod +x /usr/bin/search
