@@ -218,9 +218,9 @@ bar {
 
 # Quitar el borde y título de ventanas
 
-gaps inner 5
+gaps inner 10
 smart_gaps on
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 4
 
 bindsym $mod+i exec search-projects
 bindsym $mod+n exec mousepad
@@ -245,9 +245,16 @@ bindsym $mod+plus exec kmag
 
 # exec --no-startup-id i3-msg 'workspace 2; exec slack'
 # exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-stable'
-# exec /usr/bin/octopi-notifier
-exec nitrogen --restore
+exec --no-startup-id /usr/bin/octopi-notifier
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id redshift
+exec --no-startup-id clipit
+exec --no-startup-id flameshot
+exec --no-startup-id pasystray
+exec --no-startup-id udiskie --tray
+exec --no-startup-id dunst
+# exec --no-startup-id picom
+exec --no-startup-id xscreensaver --no-splash
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577

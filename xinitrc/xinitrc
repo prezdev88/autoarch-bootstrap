@@ -1,13 +1,3 @@
 setxkbmap -layout es
-
-nm-applet &
-clipit &
-flameshot &
-udiskie --tray &
-dunst &
-# picom &
-xscreensaver &
-/usr/bin/octopi-notifier &
 # xrdb .Xresources &
-
 exec i3
