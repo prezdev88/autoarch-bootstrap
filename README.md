@@ -1,7 +1,7 @@
 # AutoArch Bootstrap
 
 ```bash
-sudo pacman -S --noconfirm git
+sudo pacman -Sy --noconfirm git
 ```
 
 ```bash
