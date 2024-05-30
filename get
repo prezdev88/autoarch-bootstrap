@@ -2,6 +2,6 @@
 
 sudo -v
 sudo pacman -Sy --noconfirm git
-git clone http://github.com/pperezp/autoarch-bootstrap
+git clone http://github.com/prezdev88/autoarch-bootstrap
 cd autoarch-bootstrap
 ./install
