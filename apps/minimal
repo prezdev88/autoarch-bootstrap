@@ -46,3 +46,4 @@ bluez
 bluez-utils 
 pulseaudio-bluetooth 
 blueman
+polkit-gnome
