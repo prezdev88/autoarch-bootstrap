@@ -42,3 +42,7 @@ python-psutil
 kmag
 pasystray
 acpi
+bluez 
+bluez-utils 
+pulseaudio-bluetooth 
+blueman
