@@ -244,6 +244,10 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 bindsym $mod+plus exec kmag
 bindsym $mod+Shift+f exec search
 
+# Volume
+bindsym $mod+apostrophe exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+exclamdown exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
 # exec --no-startup-id i3-msg 'workspace 2; exec slack'
 # exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-stable'
 exec --no-startup-id /usr/bin/octopi-notifier
