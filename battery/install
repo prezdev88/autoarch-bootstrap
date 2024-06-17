@@ -1,0 +1,5 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+sudo cp $script_dir/battery-left /usr/bin/battery-left
+sudo chmod +x /usr/bin/battery-left
