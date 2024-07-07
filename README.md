@@ -12,3 +12,10 @@ git clone https://github.com/prezdev88/autoarch-bootstrap.git && cd autoarch-boo
 ```bash
 curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-bootstrap/master/get && chmod +x install && ./install
 ```
+
+# Screenshots
+## Desktop
+![Desktop](screenshots/desktop.png)
+
+## Terminal
+![Desktop](screenshots/terminal.png)
