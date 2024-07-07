@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo -v
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 ./yay/install
 ./apps/minimal-install
