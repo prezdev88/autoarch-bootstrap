@@ -2,6 +2,16 @@
 
 AutoArch Bootstrap is an installation script for Arch Linux designed to set up your system quickly, including the i3 window manager. This script is intended for a fresh and clean installation of Arch Linux.
 
+## Screenshots
+### Login
+![Desktop](screenshots/login.png)
+
+### Desktop
+![Desktop](screenshots/desktop.png)
+
+### Terminal
+![Terminal](screenshots/terminal.png)
+
 ## Installation
 ### Installation using Git
 
@@ -25,12 +35,3 @@ If you prefer a quick installation, use the following command to download and ru
 curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-bootstrap/master/get && chmod +x install && ./install
 ```
 
-# Screenshots
-## Login
-![Desktop](screenshots/login.png)
-
-## Desktop
-![Desktop](screenshots/desktop.png)
-
-## Terminal
-![Terminal](screenshots/terminal.png)
