@@ -5,9 +5,9 @@ sudo pacman -Syu --noconfirm
 ./yay/install
 ./apps/minimal-install
 
-if [ "$1" == "extra" ]; then
-    ./apps/extra-install
-fi
+# if [ "$1" == "extra" ]; then
+#     ./apps/extra-install
+# fi
 
 ./dunst/install
 ./xinitrc/install
@@ -19,3 +19,13 @@ fi
 ./neofetch/install
 ./neofetch/in-terminal/install
 ./nitrogen/install
+
+if [ "$1" == "prezdev" ]; then
+    ./prezdev/apps/install
+    ./lock/install
+    # ./picom/install
+    # ./search/install
+    ./apps/browser/install
+    ./redshift/install
+    ./battery/install
+fi
