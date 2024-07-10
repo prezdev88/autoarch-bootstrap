@@ -1,0 +1,35 @@
+programas sacados de minimal
+
+code
+chromium
+microsoft-edge-stable
+gstreamer
+gst-plugins-ugly
+ntfs-3g
+exfat-utils
+fuse-exfat
+xscreensaver
+rofi
+clipit
+flameshot
+picom
+xclip
+lxappearance
+arc-gtk-theme
+file-roller
+gdu
+redshift
+acpi
+bluez 
+bluez-utils 
+pulseaudio-bluetooth 
+blueman
+
+Sacado de install
+
+./lock/install
+./picom/install
+./search/install
+./apps/browser/install
+./redshift/install
+./battery/install

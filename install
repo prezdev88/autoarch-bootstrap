@@ -9,19 +9,13 @@ if [ "$1" == "extra" ]; then
     ./apps/extra-install
 fi
 
-./lock/install
 ./dunst/install
-# ./picom/install
 ./xinitrc/install
 ./xfce4-terminal-config/install
 ./bumblebee-status/install
-./search/install
 ./i3/install
 ./oh-my-fish/install
 ./dark-theme/install
 ./neofetch/install
 ./neofetch/in-terminal/install
 ./nitrogen/install
-./apps/browser/install
-./redshift/install
-./battery/install
