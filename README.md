@@ -14,9 +14,11 @@ curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-boots
 ```
 
 # Screenshots
+## Login
+![Desktop](screenshots/login.png)
+
 ## Desktop
 ![Desktop](screenshots/desktop.png)
 
 ## Terminal
 ![Terminal](screenshots/terminal.png)
-
