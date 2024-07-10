@@ -1,6 +1,6 @@
 # AutoArch Bootstrap
 
-AutoArch Bootstrap is an installation script for Arch Linux that helps you set up your system quickly, including the i3 window manager.
+AutoArch Bootstrap is an installation script for Arch Linux designed to set up your system quickly, including the i3 window manager. This script is intended for a fresh and clean installation of Arch Linux.
 
 ## Installation
 ### Installation using Git
