@@ -187,10 +187,13 @@ bindsym $mod+r mode "resize"
 # Pantalla principal
 bar {
 	i3bar_command i3bar --transparency
+	# status_command i3status
+
 	# https://github.com/tobi-wan-kenobi/bumblebee-status
 	# https://bumblebee-status.readthedocs.io/en/main/modules.html
 	status_command ~/.config/bumblebee-status/bumblebee-status \
 	-t greyish-powerline \
+	-m weather -p weather.location=talca \
 	-m kernel disk cpu \
 	memory aur-update arch-update date -p date.format='%a, %d %b %Y' \
 	-m time -p time.format='%H:%M' -m battery
@@ -209,26 +212,54 @@ bar {
 	}
 }
 
+
+# Wallpaper
+# exec feh --image-bg "#1D2021" --bg-center /home/prezdev/images/wallpaper.png
+
 # Quitar el borde y título de ventanas
+
 gaps inner 10
 smart_gaps on
 for_window [class=".*"] border pixel 4
 
+bindsym $mod+i exec search-projects
+bindsym $mod+n exec mousepad
+bindsym $mod+F1 exec chromium
+bindsym $mod+F2 exec discord
+bindsym $mod+F3 exec ytmusic
+bindsym $mod+F4 exec youtube
+bindsym $mod+F5 exec code ~/.config/i3
+bindsym $mod+F6 exec code ~/git-projects/archhelp
+bindsym $mod+F8 exec google-chrome-stable https://meet.google.com/
+bindsym $mod+F12 exec aswitch
 bindsym $mod+Escape kill
 bindsym $mod+Shift+q kill
+bindsym $mod+g exec search-google
 bindsym $mod+Shift+p exec poweroff
 bindsym $mod+$alt+Shift+p exec reboot
+bindsym $mod+x exec flameshot gui
+bindsym Print exec flameshot gui
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+bindsym $mod+plus exec kmag
+bindsym $mod+Shift+f exec search
 
 # Volume
 bindsym $mod+apostrophe exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+exclamdown exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
+# exec --no-startup-id i3-msg 'workspace 2; exec slack'
+# exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-stable'
+exec --no-startup-id /usr/bin/octopi-notifier
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id redshift
+exec --no-startup-id clipit
+exec --no-startup-id flameshot
 exec --no-startup-id pasystray
 exec --no-startup-id udiskie --tray
 exec --no-startup-id dunst
+# exec --no-startup-id picom
+exec --no-startup-id xscreensaver --no-splash
 
 # polkit for gui roots apps
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
