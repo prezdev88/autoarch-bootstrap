@@ -1,0 +1,11 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+polybar_dir="$HOME/.config/polybar"
+
+if [ ! -d "$polybar_dir" ]; then
+    mkdir -p "$polybar_dir"
+fi
+
+cp -r $script_dir/scripts $polybar_dir
+cp $script_dir/config.ini $polybar_dir
+cp $script_dir/launch.sh $polybar_dir
