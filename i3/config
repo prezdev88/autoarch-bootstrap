@@ -184,31 +184,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Pantalla principal
-bar {
-	i3bar_command i3bar --transparency
-	# https://github.com/tobi-wan-kenobi/bumblebee-status
-	# https://bumblebee-status.readthedocs.io/en/main/modules.html
-	status_command ~/.config/bumblebee-status/bumblebee-status \
-	-t greyish-powerline \
-	-m kernel disk cpu \
-	memory aur-update arch-update date -p date.format='%a, %d %b %Y' \
-	-m time -p time.format='%H:%M' -m battery
-	# position top
-	tray_output primary
-	colors {
-		background #00000000
-		statusline #ffffff
-		separator #666666
-
-		focused_workspace #4c7899 #285577 #ffffff
-		active_workspace #333333 #5f676a #ffffff
-		inactive_workspace #333333 #222222 #888888
-		urgent_workspace #2f343a #900000 #ffffff
-		binding_mode #2f343a #900000 #ffffff
-	}
-}
-
 # Quitar el borde y título de ventanas
 gaps inner 10
 smart_gaps on
@@ -233,6 +208,8 @@ exec --no-startup-id dunst
 # polkit for gui roots apps
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+exec_always ~/.config/polybar/launch.sh &
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
@@ -240,3 +217,7 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
+
+# gdu = espacio en disco
+# qps = monitoreo
+# nitrogen = wallpapers app

@@ -1,4 +1,0 @@
-#!/bin/bash
-cd ~/.config
-git clone https://github.com/tobi-wan-kenobi/bumblebee-status
-cd $HOME/autoarch-bootstrap

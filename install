@@ -12,7 +12,7 @@ sudo pacman -Syu --noconfirm
 ./dunst/install
 ./xinitrc/install
 ./xfce4-terminal-config/install
-./bumblebee-status/install
+./polybar/install
 ./i3/install
 ./oh-my-fish/install
 ./dark-theme/install
