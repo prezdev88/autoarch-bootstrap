@@ -32,3 +32,7 @@ if [ "$1" == "prezdev" ]; then
     ./battery/install
     ./prezdev/i3/install
 fi
+
+echo "Press Enter to reboot..."
+read -r
+sudo reboot
