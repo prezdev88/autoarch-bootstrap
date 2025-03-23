@@ -2,3 +2,7 @@
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 cp $script_dir/gtkrc-2.0 ~/.gtkrc-2.0
+sed -i "s|\$USER|$USER|g" ~/.gtkrc-2.0
+
+mkdir -p ~/.config/gtk-3.0
+cp $script_dir/settings.ini ~/.config/gtk-3.0
