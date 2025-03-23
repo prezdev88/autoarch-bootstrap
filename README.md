@@ -35,3 +35,8 @@ If you prefer a quick installation, use the following command to download and ru
 curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-bootstrap/master/get && chmod +x install && ./install
 ```
 
+# Personal notes
+## Install parameters
+```bash
+./install prezdev 2k notebook # See the install script to view what's happened
+```
