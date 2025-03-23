@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -i "s/\$MODULES_RIGHT/polyrestart pulseaudio systray clock/g" "$HOME/.config/polybar"

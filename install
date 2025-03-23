@@ -1,4 +1,25 @@
 #!/bin/bash
+
+# Initialize flags
+execute_prezdev=false
+execute_2k=false
+execute_notebook=false
+
+# Iterate over all provided arguments
+for arg in "$@"; do
+    case "$arg" in
+        "prezdev")
+            execute_prezdev=true
+            ;;
+        "2k")
+            execute_2k=true
+            ;;
+        "notebook")
+            execute_notebook=true
+            ;;
+    esac
+done
+
 sudo -v
 sudo pacman -Sy archlinux-keyring --noconfirm
 sudo pacman-key --refresh-keys --noconfirm
@@ -22,15 +43,26 @@ sudo pacman -Syu --noconfirm
 ./neofetch/in-terminal/install
 ./nitrogen/install
 
-if [ "$1" == "prezdev" ]; then
+if $execute_prezdev; then
     ./prezdev/apps/install
     ./lock/install
-    # ./picom/install
+    ./picom/install
     # ./search/install
     ./apps/browser/install
     ./redshift/install
-    ./battery/install
     ./prezdev/i3/install
+    ./prezdev/bluetooth/install
+fi
+
+if $execute_2k; then
+    ./2k/install
+fi
+
+if $execute_notebook; then
+    ./notebook/battery/install
+    ./notebook/polybar/install
+else
+    ./polybar/pc/install
 fi
 
 echo "Press Enter to reboot..."
