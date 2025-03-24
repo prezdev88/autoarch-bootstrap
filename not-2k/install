@@ -1,4 +1,4 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
-sed -i "s/\$DPI/140/g" "$HOME/.config/polybar/config.ini"
+sed -i "s/\$DPI/90/g" "$HOME/.config/polybar/config.ini"
