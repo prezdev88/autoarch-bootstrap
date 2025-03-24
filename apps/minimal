@@ -26,3 +26,5 @@ xfce4-settings
 nitrogen
 polybar
 pacman-contrib
+xorg-server
+xorg-xinit

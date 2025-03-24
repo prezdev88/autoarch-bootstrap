@@ -54,15 +54,17 @@ if $execute_prezdev; then
     ./prezdev/bluetooth/install
 fi
 
-if $execute_2k; then
-    ./2k/install
-fi
-
 if $execute_notebook; then
     ./notebook/battery/install
     ./notebook/polybar/install
 else
     ./polybar/pc/install
+fi
+
+if $execute_2k; then
+    ./2k/install
+else
+    ./not-2k/install
 fi
 
 echo "Press Enter to reboot..."
