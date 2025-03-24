@@ -51,7 +51,6 @@ if $execute_prezdev; then
     ./apps/browser/install
     ./redshift/install
     ./prezdev/i3/install
-    ./prezdev/bluetooth/install
 fi
 
 if $execute_notebook; then
@@ -66,6 +65,8 @@ if $execute_2k; then
 else
     ./not-2k/install
 fi
+
+./systemctl/install
 
 echo "Press Enter to reboot..."
 read -r

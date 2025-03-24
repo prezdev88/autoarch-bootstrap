@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Executing systemctl's commands..."
+sudo systemctl enable bluetooth
+sudo systemctl enable NetworkManager.service
+echo "Executing systemctl's commands DONE!"

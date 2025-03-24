@@ -28,3 +28,8 @@ polybar
 pacman-contrib
 xorg-server
 xorg-xinit
+networkmanager
+bluez 
+bluez-utils 
+pulseaudio-bluetooth 
+blueman
