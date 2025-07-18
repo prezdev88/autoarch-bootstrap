@@ -5,9 +5,19 @@ app_name="neofetch-terminal"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
 
 echo -e "[${app_name_fmt}] Adding neofetch to bash startup..."
-echo "neofetch" >> ~/.bashrc
+if ! grep -q "^neofetch" ~/.bashrc 2>/dev/null; then
+    echo "neofetch" >> ~/.bashrc
+    echo -e "[${app_name_fmt}] Added to ~/.bashrc"
+else
+    echo -e "[${app_name_fmt}] Already present in ~/.bashrc"
+fi
 
 echo -e "[${app_name_fmt}] Adding neofetch to fish startup..."
-echo "neofetch" >> ~/.config/fish/config.fish
+if ! grep -q "^neofetch" ~/.config/fish/config.fish 2>/dev/null; then
+    echo "neofetch" >> ~/.config/fish/config.fish
+    echo -e "[${app_name_fmt}] Added to ~/.config/fish/config.fish"
+else
+    echo -e "[${app_name_fmt}] Already present in ~/.config/fish/config.fish"
+fi
 
 echo -e "[${app_name_fmt}] Neofetch terminal setup completed."
