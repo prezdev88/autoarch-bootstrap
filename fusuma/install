@@ -1,0 +1,6 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+sudo gpasswd -a $USER input
+mkdir ~/.config/fusuma
+cp "$script_dir/config.yml" ~/.config/fusuma/config.yml

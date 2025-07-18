@@ -204,6 +204,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id pasystray
 exec --no-startup-id udiskie --tray
 exec --no-startup-id dunst
+exec --no-startup-id ~/start-fusuma.sh
 
 # polkit for gui roots apps
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

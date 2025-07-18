@@ -33,3 +33,9 @@ bluez
 bluez-utils 
 pulseaudio-bluetooth 
 blueman
+ruby-fusuma
+libinput
+ruby
+xdotool
+wmctrl
+xorg-xinput
