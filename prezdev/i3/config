@@ -258,6 +258,7 @@ exec --no-startup-id udiskie --tray
 exec --no-startup-id dunst
 # exec --no-startup-id picom
 exec --no-startup-id xscreensaver --no-splash
+exec --no-startup-id fusuma
 
 # polkit for gui roots apps
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
