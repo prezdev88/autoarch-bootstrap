@@ -67,6 +67,7 @@ else
 fi
 
 ./systemctl/install
+./fusuma/install
 
 echo "Press Enter to reboot..."
 read -r

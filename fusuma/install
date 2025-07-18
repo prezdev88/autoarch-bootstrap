@@ -1,6 +1,16 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="fusuma"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Installing Fusuma..."
 sudo gpasswd -a $USER input
-mkdir ~/.config/fusuma
+
+echo -e "[${app_name_fmt}] Creating Fusuma configuration directory..."
+mkdir -p ~/.config/fusuma
+
+echo -e "[${app_name_fmt}] Copying Fusuma configuration file..."
 cp "$script_dir/config.yml" ~/.config/fusuma/config.yml
+
+echo -e "[${app_name_fmt}] Fusuma installation completed."
