@@ -4,8 +4,26 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 app_name="systemctl"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
 
-echo -e "[${app_name_fmt}] Enabling bluetooth service..."
-sudo systemctl enable bluetooth
+has_bluetooth() {
+    # Opción 1: revisa si hay dispositivos Bluetooth en /sys/class/bluetooth
+    if [ -d "/sys/class/bluetooth" ] && [ "$(ls -A /sys/class/bluetooth)" ]; then
+        return 0
+    fi
+
+    # Opción 2: usa rfkill para detectar Bluetooth
+    if command -v rfkill &>/dev/null && rfkill list bluetooth | grep -qi "Bluetooth"; then
+        return 0
+    fi
+
+    return 1
+}
+
+if has_bluetooth; then
+    echo -e "[${app_name_fmt}] Enabling bluetooth service..."
+    sudo systemctl enable bluetooth
+else
+    echo -e "[${app_name_fmt}] \033[0;33mBluetooth not detected, skipping bluetooth service.\033[0m"
+fi
 
 echo -e "[${app_name_fmt}] Enabling network manager service..."
 sudo systemctl enable NetworkManager.service
