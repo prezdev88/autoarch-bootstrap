@@ -4,28 +4,32 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 app_name="yay"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
 
-echo -e "[${app_name_fmt}] Checking if yay is installed..."
-if ! command -v yay &>/dev/null; then
-    echo -e "[${app_name_fmt}] Installing yay from AUR..."
-    cd "$HOME"
+echo -e "[${app_name_fmt}] Forcing fresh install of yay..."
 
-    # Si ya existe la carpeta yay, eliminarla
-    if [ -d "yay" ]; then
-        echo -e "[${app_name_fmt}] Found existing yay folder. Removing..."
-        rm -rf yay
-    fi
-
-    echo -e "[${app_name_fmt}] Cloning yay repository..."
-    git clone https://aur.archlinux.org/yay.git
-
-    echo -e "[${app_name_fmt}] Building and installing yay..."
-    cd yay
-    makepkg -si --noconfirm
-
-    echo -e "[${app_name_fmt}] Returning to original directory..."
-    cd "$script_dir"
-else
-    echo -e "[${app_name_fmt}] Yay is already installed."
+# Eliminar binario existente si lo hay
+if command -v yay &>/dev/null; then
+    echo -e "[${app_name_fmt}] Removing existing yay binary..."
+    sudo rm -f "$(command -v yay)"
 fi
+
+# Ir al home
+cd "$HOME"
+
+# Eliminar carpeta existente
+if [ -d "yay" ]; then
+    echo -e "[${app_name_fmt}] Removing existing yay folder..."
+    rm -rf yay
+fi
+
+# Clonar y compilar
+echo -e "[${app_name_fmt}] Cloning yay repository..."
+git clone https://aur.archlinux.org/yay.git
+
+echo -e "[${app_name_fmt}] Building and installing yay..."
+cd yay
+makepkg -si --noconfirm
+
+echo -e "[${app_name_fmt}] Returning to original directory..."
+cd "$script_dir"
 
 echo -e "[${app_name_fmt}] Yay setup completed."
