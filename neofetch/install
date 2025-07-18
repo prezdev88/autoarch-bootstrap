@@ -1,10 +1,18 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="neofetch"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
 neofetch_config_dir=~/.config/neofetch
 
+echo -e "[${app_name_fmt}] Checking neofetch configuration directory..."
 if [ ! -d "$neofetch_config_dir" ]; then
+    echo -e "[${app_name_fmt}] Creating neofetch configuration directory..."
     mkdir -p "$neofetch_config_dir"
 fi
 
+echo -e "[${app_name_fmt}] Copying neofetch configuration file..."
 cp $script_dir/neofetch.conf "$neofetch_config_dir/config.conf"
+
+echo -e "[${app_name_fmt}] Neofetch configuration completed."

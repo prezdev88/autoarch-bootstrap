@@ -1,3 +1,10 @@
 #!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="pc-polybar"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Configuring PC-specific polybar modules..."
 sed -i "s/\$MODULES_RIGHT/polyrestart pulseaudio systray clock/g" "$HOME/.config/polybar"
+
+echo -e "[${app_name_fmt}] PC polybar configuration completed."

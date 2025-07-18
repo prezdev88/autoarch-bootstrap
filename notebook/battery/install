@@ -1,5 +1,13 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="battery-script"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Installing battery check script..."
 sudo cp $script_dir/battery-left /usr/bin/battery-left
+
+echo -e "[${app_name_fmt}] Setting execution permissions..."
 sudo chmod +x /usr/bin/battery-left
+
+echo -e "[${app_name_fmt}] Battery script installation completed."

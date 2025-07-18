@@ -1,5 +1,13 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="i3"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Creating i3 configuration directory..."
 mkdir -p ~/.config/i3
+
+echo -e "[${app_name_fmt}] Copying i3 configuration file..."
 cp $script_dir/config ~/.config/i3/config
+
+echo -e "[${app_name_fmt}] i3 window manager setup completed."

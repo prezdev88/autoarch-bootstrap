@@ -1,4 +1,10 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="xinitrc"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Installing X initialization configuration..."
 cp $script_dir/xinitrc ~/.xinitrc
+
+echo -e "[${app_name_fmt}] X initialization setup completed."

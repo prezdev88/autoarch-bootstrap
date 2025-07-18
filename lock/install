@@ -1,5 +1,13 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="lock"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Installing lock script..."
 sudo cp $script_dir/lock /bin/lock
+
+echo -e "[${app_name_fmt}] Setting execution permissions..."
 sudo chmod +x /bin/lock
+
+echo -e "[${app_name_fmt}] Lock script installation completed."

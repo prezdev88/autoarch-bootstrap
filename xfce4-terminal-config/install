@@ -1,9 +1,16 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="xfce4-terminal"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
 config_dir="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml"
 config_file="$config_dir/xfce4-terminal.xml"
 
+echo -e "[${app_name_fmt}] Creating terminal configuration directory..."
 mkdir -p "$config_dir"
+
+echo -e "[${app_name_fmt}] Installing terminal configuration..."
 cp $script_dir/xfce4-terminal.xml $config_file
-echo "File created at $config_file"
+
+echo -e "[${app_name_fmt}] Terminal configuration completed."

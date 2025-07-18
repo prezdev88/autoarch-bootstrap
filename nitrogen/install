@@ -1,10 +1,22 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="nitrogen"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Creating images directory..."
 mkdir ~/images
+
+echo -e "[${app_name_fmt}] Copying wallpaper..."
 cp $script_dir/wall.png ~/images/wall.png
+
+echo -e "[${app_name_fmt}] Creating nitrogen configuration directory..."
 mkdir ~/.config/nitrogen
+
+echo -e "[${app_name_fmt}] Copying nitrogen configuration..."
 cp $script_dir/nitrogen-save.cfg ~/.config/nitrogen/bg-saved.cfg
 
-# Change username in bg-saved file
+echo -e "[${app_name_fmt}] Configuring user settings..."
 sed -i "s|\$USER|$USER|g" ~/.config/nitrogen/bg-saved.cfg
+
+echo -e "[${app_name_fmt}] Nitrogen setup completed."

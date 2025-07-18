@@ -1,13 +1,25 @@
 #!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
 
-# Verificar si yay ya está instalado
+app_name="yay"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Checking if yay is installed..."
 if ! command -v yay &>/dev/null; then
-    echo "yay is not installed. Installing..."
+    echo -e "[${app_name_fmt}] Installing yay from AUR..."
     cd $HOME
+    
+    echo -e "[${app_name_fmt}] Cloning yay repository..."
     git clone https://aur.archlinux.org/yay.git
+    
+    echo -e "[${app_name_fmt}] Building and installing yay..."
     cd yay
     makepkg -si --noconfirm
+    
+    echo -e "[${app_name_fmt}] Returning to original directory..."
     cd $HOME/autoarch-bootstrap
 else
-    echo "yay is already installed."
+    echo -e "[${app_name_fmt}] Yay is already installed."
 fi
+
+echo -e "[${app_name_fmt}] Yay setup completed."

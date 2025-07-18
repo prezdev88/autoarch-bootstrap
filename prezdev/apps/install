@@ -1,11 +1,20 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="prezdev-apps"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Reading personal apps list..."
 declare -a packages
 
 while IFS= read -r line; do
     packages+=("$line")
 done < $script_dir/apps
 
+echo -e "[${app_name_fmt}] Updating package database..."
 yay -Sy
+
+echo -e "[${app_name_fmt}] Installing personal apps..."
 yay -S --noconfirm "${packages[@]}"
+
+echo -e "[${app_name_fmt}] Personal apps installation completed."

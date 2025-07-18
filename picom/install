@@ -1,5 +1,13 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="picom"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Removing default picom configuration..."
 sudo rm /etc/xdg/picom.conf
+
+echo -e "[${app_name_fmt}] Installing custom picom configuration..."
 sudo cp $script_dir/picom.conf /etc/xdg/picom.conf
+
+echo -e "[${app_name_fmt}] Picom configuration completed."

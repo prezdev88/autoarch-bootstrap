@@ -69,6 +69,9 @@ fi
 ./systemctl/install
 ./fusuma/install
 
-echo "Press Enter to reboot..."
+app_name="autoarch"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Installation completed. Press Enter to reboot..."
 read -r
 sudo reboot

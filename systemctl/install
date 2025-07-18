@@ -1,5 +1,13 @@
 #!/bin/bash
-echo "Executing systemctl's commands..."
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+app_name="systemctl"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Enabling bluetooth service..."
 sudo systemctl enable bluetooth
+
+echo -e "[${app_name_fmt}] Enabling network manager service..."
 sudo systemctl enable NetworkManager.service
-echo "Executing systemctl's commands DONE!"
+
+echo -e "[${app_name_fmt}] System services configuration completed."

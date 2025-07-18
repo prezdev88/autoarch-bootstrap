@@ -1,4 +1,13 @@
 #!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="neofetch-terminal"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Adding neofetch to bash startup..."
 echo "neofetch" >> ~/.bashrc
+
+echo -e "[${app_name_fmt}] Adding neofetch to fish startup..."
 echo "neofetch" >> ~/.config/fish/config.fish
+
+echo -e "[${app_name_fmt}] Neofetch terminal setup completed."

@@ -1,8 +1,15 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="dark-theme"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Setting up GTK2 dark theme..."
 cp $script_dir/gtkrc-2.0 ~/.gtkrc-2.0
 sed -i "s|\$USER|$USER|g" ~/.gtkrc-2.0
 
+echo -e "[${app_name_fmt}] Setting up GTK3 dark theme..."
 mkdir -p ~/.config/gtk-3.0
 cp $script_dir/settings.ini ~/.config/gtk-3.0
+
+echo -e "[${app_name_fmt}] Dark theme setup completed."

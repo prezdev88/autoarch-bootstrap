@@ -1,7 +1,19 @@
-# !/bin/bash
+#!/bin/bash
 
+app_name="autoarch-get"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Requesting sudo privileges..."
 sudo -v
+
+echo -e "[${app_name_fmt}] Installing git..."
 sudo pacman -Sy --noconfirm git
+
+echo -e "[${app_name_fmt}] Cloning autoarch-bootstrap repository..."
 git clone http://github.com/prezdev88/autoarch-bootstrap
+
+echo -e "[${app_name_fmt}] Entering project directory..."
 cd autoarch-bootstrap
+
+echo -e "[${app_name_fmt}] Starting installation..."
 ./install

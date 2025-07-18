@@ -1,8 +1,16 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="2k-setup"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Copying Xresources configuration..."
 cp $script_dir/Xresources ~/.Xresources
+
+echo -e "[${app_name_fmt}] Copying xinitrc configuration..."
 cp $script_dir/xinitrc ~/.xinitrc
+
+echo -e "[${app_name_fmt}] Configuring DPI in polybar..."
 sed -i "s/\$DPI/140/g" "$HOME/.config/polybar/config.ini"
 
-# Añadir xrdb .Xresources & en .xinitrc antes de exec i3
+echo -e "[${app_name_fmt}] 2K setup completed."

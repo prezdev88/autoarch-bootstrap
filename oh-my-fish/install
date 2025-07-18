@@ -1,10 +1,24 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="oh-my-fish"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Cloning oh-my-fish repository..."
 cd $HOME
 git clone https://github.com/oh-my-fish/oh-my-fish
+
+echo -e "[${app_name_fmt}] Setting up installer permissions..."
 chmod +x $HOME/oh-my-fish/bin/install
+
+echo -e "[${app_name_fmt}] Installing oh-my-fish..."
 cd $HOME/oh-my-fish/bin
 ./install --noninteractive
+
+echo -e "[${app_name_fmt}] Installing agnoster theme..."
 fish -c "omf install agnoster"
+
+echo -e "[${app_name_fmt}] Returning to original directory..."
 cd $HOME/autoarch-bootstrap
+
+echo -e "[${app_name_fmt}] Oh My Fish setup completed."

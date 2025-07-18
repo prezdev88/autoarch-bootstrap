@@ -1,6 +1,10 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="fix-cursor"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Copying cursor configuration..."
 cp $script_dir/Xresources ~/.Xresources
 
-# Añadir xrdb .Xresources & en .xinitrc antes de exec i3
+echo -e "[${app_name_fmt}] Cursor configuration setup completed."

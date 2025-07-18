@@ -1,11 +1,20 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="extra-packages"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+echo -e "[${app_name_fmt}] Reading package list..."
 declare -a packages
 
 while IFS= read -r line; do
     packages+=("$line")
 done < $script_dir/extra
 
+echo -e "[${app_name_fmt}] Updating package database..."
 yay -Sy
+
+echo -e "[${app_name_fmt}] Installing extra packages..."
 yay -S --noconfirm "${packages[@]}"
+
+echo -e "[${app_name_fmt}] Extra packages installation completed."

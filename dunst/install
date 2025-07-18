@@ -1,14 +1,20 @@
 #!/bin/bash
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
+app_name="dunst"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
 dunstrc_path="$HOME/.config/dunst/dunstrc"
-    
-# Verificar si el archivo dunstrc ya existe
+
+echo -e "[${app_name_fmt}] Checking dunst configuration..."
 if [ -f "$dunstrc_path" ]; then
-    echo "The dunst configuration file already exists."
+    echo -e "[${app_name_fmt}] Dunst configuration file already exists."
 else
-    # Si el archivo dunstrc no existe, crearlo y configurarlo
+    echo -e "[${app_name_fmt}] Creating dunst configuration directory..."
     mkdir -p ~/.config/dunst
+    
+    echo -e "[${app_name_fmt}] Copying dunst configuration file..."
     cp $script_dir/dunstrc $dunstrc_path
-    echo "The dunst configuration file has been created."
 fi
+
+echo -e "[${app_name_fmt}] Dunst setup completed."
