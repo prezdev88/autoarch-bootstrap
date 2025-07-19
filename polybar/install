@@ -1,24 +1,30 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 app_name="polybar"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
+repo_url="https://github.com/prezdev88/polybar-config"
+branch="thinkpad"
+temp_dir="/tmp/polybar-config-setup"
 
-polybar_dir="$HOME/.config/polybar"
+echo -e "[${app_name_fmt}] Cloning Polybar configuration from GitHub (branch: $branch)..."
+rm -rf "$temp_dir"
+git clone --branch "$branch" "$repo_url" "$temp_dir"
 
-echo -e "[${app_name_fmt}] Checking polybar configuration directory..."
-if [ ! -d "$polybar_dir" ]; then
-    echo -e "[${app_name_fmt}] Creating polybar configuration directory..."
-    mkdir -p "$polybar_dir"
+if [ $? -ne 0 ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  exit 1
 fi
 
-echo -e "[${app_name_fmt}] Copying polybar scripts..."
-cp -r $script_dir/scripts $polybar_dir
+echo -e "[${app_name_fmt}] Removing existing ~/.config/polybar..."
+rm -rf ~/.config/polybar
 
-echo -e "[${app_name_fmt}] Copying polybar configuration..."
-cp $script_dir/config.ini $polybar_dir
+echo -e "[${app_name_fmt}] Creating ~/.config/polybar directory..."
+mkdir -p ~/.config/polybar
 
-echo -e "[${app_name_fmt}] Copying polybar launch script..."
-cp $script_dir/launch.sh $polybar_dir
+echo -e "[${app_name_fmt}] Copying configuration files to ~/.config/polybar..."
+cp -r "$temp_dir"/* ~/.config/polybar/
 
-echo -e "[${app_name_fmt}] Polybar setup completed."
+echo -e "[${app_name_fmt}] Deleting cloned repository from $temp_dir..."
+rm -rf "$temp_dir"
+
+echo -e "[${app_name_fmt}] \033[1;32mPolybar configuration setup completed successfully.\033[0m"

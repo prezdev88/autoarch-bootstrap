@@ -1,21 +1,13 @@
 #!/bin/bash
 
 # Initialize flags
-execute_prezdev=false
 execute_2k=false
-execute_notebook=false
 
 # Iterate over all provided arguments
 for arg in "$@"; do
     case "$arg" in
-        "prezdev")
-            execute_prezdev=true
-            ;;
         "2k")
             execute_2k=true
-            ;;
-        "notebook")
-            execute_notebook=true
             ;;
     esac
 done
@@ -45,25 +37,15 @@ pause() {
 ./oh-my-fish/install; pause
 ./dark-theme/install; pause
 ./neofetch/install; pause
-./neofetch/in-terminal/install; pause
+# ./neofetch/in-terminal/install; pause
 ./nitrogen/install; pause
 
-if $execute_prezdev; then
-    ./prezdev/apps/install; pause
-    ./lock/install; pause
-    ./picom/install; pause
-    # ./search/install; pause
-    ./apps/browser/install; pause
-    ./redshift/install; pause
-    ./prezdev/i3/install; pause
-fi
-
-if $execute_notebook; then
-    ./notebook/battery/install; pause
-    ./notebook/polybar/install; pause
-else
-    ./polybar/pc/install; pause
-fi
+./prezdev/apps/install; pause
+./lock/install; pause
+./picom/install; pause
+./apps/browser/install; pause
+./redshift/install; pause
+./notebook/battery/install; pause
 
 if $execute_2k; then
     ./2k/install; pause

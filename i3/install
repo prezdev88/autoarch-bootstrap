@@ -1,13 +1,29 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 app_name="i3"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
+repo_url="https://github.com/prezdev88/i3-config"
+temp_dir="/tmp/i3-config-setup"
 
-echo -e "[${app_name_fmt}] Creating i3 configuration directory..."
+echo -e "[${app_name_fmt}] Cloning i3 configuration from GitHub..."
+rm -rf "$temp_dir"
+git clone "$repo_url" "$temp_dir"
+
+if [ $? -ne 0 ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  exit 1
+fi
+
+echo -e "[${app_name_fmt}] Removing existing ~/.config/i3..."
+rm -rf ~/.config/i3
+
+echo -e "[${app_name_fmt}] Creating ~/.config/i3 directory..."
 mkdir -p ~/.config/i3
 
-echo -e "[${app_name_fmt}] Copying i3 configuration file..."
-cp $script_dir/config ~/.config/i3/config
+echo -e "[${app_name_fmt}] Copying configuration files to ~/.config/i3..."
+cp -r "$temp_dir"/* ~/.config/i3/
 
-echo -e "[${app_name_fmt}] i3 window manager setup completed."
+echo -e "[${app_name_fmt}] Deleting cloned repository from $temp_dir..."
+rm -rf "$temp_dir"
+
+echo -e "[${app_name_fmt}] \033[1;32mi3 window manager setup completed successfully.\033[0m"
