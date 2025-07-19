@@ -38,5 +38,5 @@ curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-boots
 # Personal notes
 ## Install parameters
 ```bash
-./install prezdev 2k notebook # See the install script to view what's happened
+./install 2k
 ```
