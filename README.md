@@ -40,3 +40,11 @@ curl --output install https://raw.githubusercontent.com/prezdev88/autoarch-boots
 ```bash
 ./install 2k
 ```
+
+`2k` is an optional argument for HiDPI/2K screens.
+
+- `./install 2k` runs `./2k/install`
+- `./install` (without args) runs `./not-2k/install`
+
+The `2k` profile applies higher DPI settings (Polybar DPI `140`) and copies the files from `2k/` (`Xresources` and `xinitrc`).
+The default profile applies standard DPI settings (Polybar DPI `90`).
