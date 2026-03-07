@@ -1,0 +1,22 @@
+#!/bin/bash
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+app_name="conky"
+app_name_fmt="\033[1;32m${app_name}\033[0m"
+
+target_dir="${HOME}/.config/conky"
+target_file="${target_dir}/conky.conf"
+
+echo -e "[${app_name_fmt}] Creating conky config directory..."
+mkdir -p "${target_dir}"
+
+if [ -f "${target_file}" ]; then
+  backup_file="${target_file}.bak.$(date +%Y%m%d-%H%M%S)"
+  echo -e "[${app_name_fmt}] Backing up existing conky configuration to ${backup_file}..."
+  cp "${target_file}" "${backup_file}"
+fi
+
+echo -e "[${app_name_fmt}] Installing custom conky configuration..."
+cp "${script_dir}/conky.conf" "${target_file}"
+
+echo -e "[${app_name_fmt}] Conky configuration completed."

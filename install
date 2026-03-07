@@ -43,6 +43,7 @@ pause() {
 ./prezdev/apps/install; pause
 ./lock/install; pause
 ./picom/install; pause
+./conky/install; pause
 ./apps/browser/install; pause
 ./redshift/install; pause
 ./notebook/battery/install; pause
