@@ -1,11 +1,27 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 app_name="conky"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
-
+repo_url="https://github.com/prezdev88/conky.git"
+temp_dir="/tmp/conky-config-setup"
 target_dir="${HOME}/.config/conky"
 target_file="${target_dir}/conky.conf"
+
+echo -e "[${app_name_fmt}] Cloning conky configuration from GitHub..."
+rm -rf "${temp_dir}"
+git clone "${repo_url}" "${temp_dir}"
+
+if [ $? -ne 0 ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  exit 1
+fi
+
+source_file="$(find "${temp_dir}" -maxdepth 3 -type f \( -name "conky.conf" -o -name ".conkyrc" \) | head -n 1)"
+if [ -z "${source_file}" ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: conky config file not found in repository.\033[0m"
+  rm -rf "${temp_dir}"
+  exit 1
+fi
 
 echo -e "[${app_name_fmt}] Creating conky config directory..."
 mkdir -p "${target_dir}"
@@ -17,6 +33,9 @@ if [ -f "${target_file}" ]; then
 fi
 
 echo -e "[${app_name_fmt}] Installing custom conky configuration..."
-cp "${script_dir}/conky.conf" "${target_file}"
+cp "${source_file}" "${target_file}"
+
+echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
+rm -rf "${temp_dir}"
 
 echo -e "[${app_name_fmt}] Conky configuration completed."
