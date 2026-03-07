@@ -4,10 +4,19 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 app_name="picom"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
 
-echo -e "[${app_name_fmt}] Removing default picom configuration..."
-sudo rm /etc/xdg/picom.conf
+target_dir="${HOME}/.config/picom"
+target_file="${target_dir}/picom.conf"
+
+echo -e "[${app_name_fmt}] Creating picom config directory..."
+mkdir -p "${target_dir}"
+
+if [ -f "${target_file}" ]; then
+  backup_file="${target_file}.bak.$(date +%Y%m%d-%H%M%S)"
+  echo -e "[${app_name_fmt}] Backing up existing picom configuration to ${backup_file}..."
+  cp "${target_file}" "${backup_file}"
+fi
 
 echo -e "[${app_name_fmt}] Installing custom picom configuration..."
-sudo cp $script_dir/picom.conf /etc/xdg/picom.conf
+cp "${script_dir}/picom.conf" "${target_file}"
 
 echo -e "[${app_name_fmt}] Picom configuration completed."
