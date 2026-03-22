@@ -1,20 +1,35 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 app_name="dunst"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
+repo_url="https://github.com/prezdev88/dunst-config.git"
+temp_dir="/tmp/dunst-config-setup"
+target_dir="${HOME}/.config/dunst"
+target_file="${target_dir}/dunstrc"
 
-dunstrc_path="$HOME/.config/dunst/dunstrc"
+echo -e "[${app_name_fmt}] Cloning dunst configuration from GitHub..."
+rm -rf "${temp_dir}"
+git clone "${repo_url}" "${temp_dir}"
 
-echo -e "[${app_name_fmt}] Checking dunst configuration..."
-if [ -f "$dunstrc_path" ]; then
-    echo -e "[${app_name_fmt}] Dunst configuration file already exists."
-else
-    echo -e "[${app_name_fmt}] Creating dunst configuration directory..."
-    mkdir -p ~/.config/dunst
-    
-    echo -e "[${app_name_fmt}] Copying dunst configuration file..."
-    cp $script_dir/dunstrc $dunstrc_path
+if [ $? -ne 0 ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  exit 1
 fi
+
+source_file="$(find "${temp_dir}" -maxdepth 3 -type f -name "dunstrc" | head -n 1)"
+if [ -z "${source_file}" ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: dunstrc not found in repository.\033[0m"
+  rm -rf "${temp_dir}"
+  exit 1
+fi
+
+echo -e "[${app_name_fmt}] Creating dunst configuration directory..."
+mkdir -p "${target_dir}"
+
+echo -e "[${app_name_fmt}] Installing dunst configuration..."
+cp "${source_file}" "${target_file}"
+
+echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
+rm -rf "${temp_dir}"
 
 echo -e "[${app_name_fmt}] Dunst setup completed."
