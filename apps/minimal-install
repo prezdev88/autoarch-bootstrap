@@ -1,20 +1,33 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+# Source utils.sh
+source "$(dirname "$0")/../../lib/utils.sh"
 
 app_name="minimal-packages"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
+script_dir="$(cd "$(dirname "$0")" && pwd)"
 
-echo -e "[${app_name_fmt}] Reading minimal package list..."
+log_info "Reading minimal package list..."
 declare -a packages
+
+if [ ! -f "$script_dir/minimal" ]; then
+    log_error "Package list file 'minimal' not found in $script_dir."
+    exit 1
+fi
 
 while IFS= read -r line; do
     packages+=("$line")
-done < $script_dir/minimal
+done < "$script_dir/minimal"
 
-echo -e "[${app_name_fmt}] Updating package database..."
+log_info "Updating package database..."
 yay -Sy
 
-echo -e "[${app_name_fmt}] Installing minimal packages..."
+log_info "Installing minimal packages..."
 yay -S --noconfirm "${packages[@]}"
 
-echo -e "[${app_name_fmt}] Minimal packages installation completed."
+if [ $? -eq 0 ]; then
+    log_success "Minimal packages installation completed."
+else
+    log_error "Failed to install some packages."
+    exit 1
+fi
+

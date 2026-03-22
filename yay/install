@@ -1,35 +1,39 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
+
+# Source utils.sh
+source "$(dirname "$0")/../lib/utils.sh"
 
 app_name="yay"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
+log_info "Checking if $app_name is already installed..."
 
-echo -e "[${app_name_fmt}] Forcing fresh install of yay..."
-
-# Eliminar binario existente si lo hay
 if command -v yay &>/dev/null; then
-    echo -e "[${app_name_fmt}] Removing existing yay binary..."
-    sudo rm -f "$(command -v yay)"
+    log_success "$app_name is already installed."
+    exit 0
 fi
 
-# Ir al home
+log_info "Installing $app_name..."
+
+# Go to home directory
 cd "$HOME"
 
-# Eliminar carpeta existente
+# Remove existing folder if present to ensure clean install
 if [ -d "yay" ]; then
-    echo -e "[${app_name_fmt}] Removing existing yay folder..."
+    log_info "Removing existing yay folder..."
     rm -rf yay
 fi
 
-# Clonar y compilar
-echo -e "[${app_name_fmt}] Cloning yay repository..."
+# Clone and build
+log_info "Cloning yay repository..."
 git clone https://aur.archlinux.org/yay.git
 
-echo -e "[${app_name_fmt}] Building and installing yay..."
+log_info "Building and installing yay..."
 cd yay
 makepkg -si --noconfirm
 
-echo -e "[${app_name_fmt}] Returning to original directory..."
-cd "$script_dir"
+if [ $? -eq 0 ]; then
+    log_success "$app_name installation completed."
+else
+    log_error "$app_name installation failed."
+    exit 1
+fi
 
-echo -e "[${app_name_fmt}] Yay setup completed."

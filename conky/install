@@ -1,41 +1,42 @@
 #!/bin/bash
 
+# Source utils.sh
+source "$(dirname "$0")/../lib/utils.sh"
+
 app_name="conky"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
 repo_url="https://github.com/prezdev88/conky-config.git"
 temp_dir="/tmp/conky-config-setup"
 target_dir="${HOME}/.config/conky"
 target_file="${target_dir}/conky.conf"
 
-echo -e "[${app_name_fmt}] Cloning conky configuration from GitHub..."
+log_info "Cloning conky configuration from GitHub..."
 rm -rf "${temp_dir}"
 git clone "${repo_url}" "${temp_dir}"
 
 if [ $? -ne 0 ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  log_error "Failed to clone repository."
   exit 1
 fi
 
 source_file="$(find "${temp_dir}" -maxdepth 3 -type f \( -name "conky.conf" -o -name ".conkyrc" \) | head -n 1)"
 if [ -z "${source_file}" ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: conky config file not found in repository.\033[0m"
+  log_error "conky config file not found in repository."
   rm -rf "${temp_dir}"
   exit 1
 fi
 
-echo -e "[${app_name_fmt}] Creating conky config directory..."
+log_info "Creating conky config directory..."
 mkdir -p "${target_dir}"
 
 if [ -f "${target_file}" ]; then
-  backup_file="${target_file}.bak.$(date +%Y%m%d-%H%M%S)"
-  echo -e "[${app_name_fmt}] Backing up existing conky configuration to ${backup_file}..."
+  backup_file="${target_file}.bak.$(date +%Y%m%d_%H%M%S)"
+  log_warn "Backing up existing conky configuration to ${backup_file}..."
   cp "${target_file}" "${backup_file}"
 fi
 
-echo -e "[${app_name_fmt}] Installing custom conky configuration..."
+log_info "Installing custom conky configuration..."
 cp "${source_file}" "${target_file}"
 
-echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
 rm -rf "${temp_dir}"
+log_success "Conky configuration completed."
 
-echo -e "[${app_name_fmt}] Conky configuration completed."

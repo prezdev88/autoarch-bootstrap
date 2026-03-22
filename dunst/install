@@ -1,35 +1,43 @@
 #!/bin/bash
 
+# Source utils.sh
+source "$(dirname "$0")/../lib/utils.sh"
+
 app_name="dunst"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
 repo_url="https://github.com/prezdev88/dunst-config.git"
 temp_dir="/tmp/dunst-config-setup"
 target_dir="${HOME}/.config/dunst"
 target_file="${target_dir}/dunstrc"
 
-echo -e "[${app_name_fmt}] Cloning dunst configuration from GitHub..."
+log_info "Cloning dunst configuration from GitHub..."
 rm -rf "${temp_dir}"
 git clone "${repo_url}" "${temp_dir}"
 
 if [ $? -ne 0 ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  log_error "Failed to clone repository."
   exit 1
 fi
 
 source_file="$(find "${temp_dir}" -maxdepth 3 -type f -name "dunstrc" | head -n 1)"
 if [ -z "${source_file}" ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: dunstrc not found in repository.\033[0m"
+  log_error "dunstrc not found in repository."
   rm -rf "${temp_dir}"
   exit 1
 fi
 
-echo -e "[${app_name_fmt}] Creating dunst configuration directory..."
+log_info "Creating dunst configuration directory..."
 mkdir -p "${target_dir}"
 
-echo -e "[${app_name_fmt}] Installing dunst configuration..."
+# Backup existing file if it exists
+if [ -f "${target_file}" ]; then
+    backup_file="${target_file}.bak.$(date +%Y%m%d_%H%M%S)"
+    log_warn "Backing up existing dunstrc to ${backup_file}"
+    cp "${target_file}" "${backup_file}"
+fi
+
+log_info "Installing dunst configuration..."
 cp "${source_file}" "${target_file}"
 
-echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
 rm -rf "${temp_dir}"
+log_success "Dunst setup completed."
 
-echo -e "[${app_name_fmt}] Dunst setup completed."

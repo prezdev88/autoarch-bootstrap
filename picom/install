@@ -1,41 +1,42 @@
 #!/bin/bash
 
+# Source utils.sh
+source "$(dirname "$0")/../lib/utils.sh"
+
 app_name="picom"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
 repo_url="https://github.com/prezdev88/picom-config.git"
 temp_dir="/tmp/picom-config-setup"
 target_dir="${HOME}/.config/picom"
 target_file="${target_dir}/picom.conf"
 
-echo -e "[${app_name_fmt}] Cloning picom configuration from GitHub..."
+log_info "Cloning picom configuration from GitHub..."
 rm -rf "${temp_dir}"
 git clone "${repo_url}" "${temp_dir}"
 
 if [ $? -ne 0 ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  log_error "Failed to clone repository."
   exit 1
 fi
 
 source_file="$(find "${temp_dir}" -maxdepth 3 -type f -name "picom.conf" | head -n 1)"
 if [ -z "${source_file}" ]; then
-  echo -e "[${app_name_fmt}] \033[0;31mError: picom.conf not found in repository.\033[0m"
+  log_error "picom.conf not found in repository."
   rm -rf "${temp_dir}"
   exit 1
 fi
 
-echo -e "[${app_name_fmt}] Creating picom config directory..."
+log_info "Creating picom config directory..."
 mkdir -p "${target_dir}"
 
 if [ -f "${target_file}" ]; then
-  backup_file="${target_file}.bak.$(date +%Y%m%d-%H%M%S)"
-  echo -e "[${app_name_fmt}] Backing up existing picom configuration to ${backup_file}..."
+  backup_file="${target_file}.bak.$(date +%Y%m%d_%H%M%S)"
+  log_warn "Backing up existing picom configuration to ${backup_file}..."
   cp "${target_file}" "${backup_file}"
 fi
 
-echo -e "[${app_name_fmt}] Installing custom picom configuration..."
+log_info "Installing custom picom configuration..."
 cp "${source_file}" "${target_file}"
 
-echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
 rm -rf "${temp_dir}"
+log_success "Picom configuration completed."
 
-echo -e "[${app_name_fmt}] Picom configuration completed."

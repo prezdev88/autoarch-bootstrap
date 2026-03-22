@@ -15,5 +15,5 @@ git clone http://github.com/prezdev88/autoarch-bootstrap
 echo -e "[${app_name_fmt}] Entering project directory..."
 cd autoarch-bootstrap
 
-echo -e "[${app_name_fmt}] Starting installation..."
-./install
+echo -e "[${app_name_fmt}] Starting installation with arguments: $@"
+./install "$@"

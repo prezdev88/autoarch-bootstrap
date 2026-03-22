@@ -1,65 +1,96 @@
 #!/bin/bash
 
+# Get the absolute path of the script directory to reliably find lib/utils.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib/utils.sh"
+
 # Initialize flags
 execute_2k=false
+NO_PAUSE=false
 
-# Iterate over all provided arguments
+# Parse arguments
 for arg in "$@"; do
     case "$arg" in
-        "2k")
+        "--2k"|"2k")
             execute_2k=true
+            log_info "2K/HiDPI mode enabled."
+            ;;
+        "--no-pause"|"--yes"|"-y")
+            NO_PAUSE=true
+            log_info "No-pause mode enabled."
+            ;;
+        *)
+            log_warn "Unknown argument: $arg"
             ;;
     esac
 done
 
+# Request sudo upfront
 sudo -v
+log_info "Updating system..."
 sudo pacman -Sy archlinux-keyring --noconfirm
 sudo pacman-key --refresh-keys --noconfirm
 sudo pacman -Syu --noconfirm
 
-pause() {
-    echo -e "\n\033[1;34mPresiona una tecla para continuar...\033[0m"
-    read -n 1 -s
+run_script() {
+    local script_path="$1"
+    if [ -f "$script_path" ]; then
+        log_info "Running $script_path..."
+        # Pass NO_PAUSE to sub-scripts via environment variable or argument if needed
+        # For now, we assume sub-scripts will be updated to source utils.sh and respect global vars
+        # But since they run in a subshell, we need to export NO_PAUSE or source them.
+        # Ideally, we source them if they were designed as libraries, but they are scripts.
+        # We will update them to read NO_PAUSE from env.
+        export NO_PAUSE
+        "$script_path"
+        if [ $? -eq 0 ]; then
+            log_success "$script_path completed."
+        else
+            log_error "$script_path failed."
+        fi
+        pause
+    else
+        log_error "Script not found: $script_path"
+    fi
 }
 
-./yay/install; pause
-./apps/minimal-install; pause
+run_script "./yay/install"
+run_script "./apps/minimal-install"
 
 # if [ "$1" == "extra" ]; then
 #     ./apps/extra-install; pause
 # fi
 
-./dunst/install; pause
-./xinitrc/install; pause
-./xfce4-terminal-config/install; pause
-./polybar/install; pause
-./i3/install; pause
-./oh-my-fish/install; pause
-./dark-theme/install; pause
-./neofetch/install; pause
+run_script "./dunst/install"
+run_script "./xinitrc/install"
+run_script "./xfce4-terminal-config/install"
+run_script "./polybar/install"
+run_script "./i3/install"
+run_script "./oh-my-fish/install"
+run_script "./dark-theme/install"
+run_script "./neofetch/install"
 # ./neofetch/in-terminal/install; pause
-./nitrogen/install; pause
+run_script "./nitrogen/install"
 
-./prezdev/apps/install; pause
-./lock/install; pause
-./picom/install; pause
-./conky/install; pause
-./apps/browser/install; pause
-./redshift/install; pause
-./notebook/battery/install; pause
+run_script "./prezdev/apps/install"
+run_script "./lock/install"
+run_script "./picom/install"
+run_script "./conky/install"
+run_script "./apps/browser/install"
+run_script "./redshift/install"
+run_script "./notebook/battery/install"
 
 if $execute_2k; then
-    ./2k/install; pause
+    run_script "./2k/install"
 else
-    ./not-2k/install; pause
+    run_script "./not-2k/install"
 fi
 
-./systemctl/install; pause
-./fusuma/install; pause
+run_script "./systemctl/install"
+run_script "./fusuma/install"
 
-app_name="autoarch"
-app_name_fmt="\033[1;32m${app_name}\033[0m"
-
-echo -e "[${app_name_fmt}] Instalación finalizada. Presiona Enter para reiniciar..."
-read -r
+log_success "Installation finished. Press Enter to reboot..."
+if [ "$NO_PAUSE" = false ]; then
+    read -r
+fi
 sudo reboot
