@@ -1,16 +1,38 @@
 #!/bin/bash
-script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 app_name="fusuma"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
+repo_url="https://github.com/prezdev88/fusuma-config.git"
+temp_dir="/tmp/fusuma-config-setup"
+target_dir="${HOME}/.config/fusuma"
+target_file="${target_dir}/config.yml"
 
 echo -e "[${app_name_fmt}] Installing Fusuma..."
 sudo gpasswd -a $USER input
 
-echo -e "[${app_name_fmt}] Creating Fusuma configuration directory..."
-mkdir -p ~/.config/fusuma
+echo -e "[${app_name_fmt}] Cloning Fusuma configuration from GitHub..."
+rm -rf "${temp_dir}"
+git clone "${repo_url}" "${temp_dir}"
 
-echo -e "[${app_name_fmt}] Copying Fusuma configuration file..."
-cp "$script_dir/config.yml" ~/.config/fusuma/config.yml
+if [ $? -ne 0 ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: Failed to clone repository.\033[0m"
+  exit 1
+fi
+
+source_file="$(find "${temp_dir}" -maxdepth 3 -type f -name "config.yml" | head -n 1)"
+if [ -z "${source_file}" ]; then
+  echo -e "[${app_name_fmt}] \033[0;31mError: config.yml not found in repository.\033[0m"
+  rm -rf "${temp_dir}"
+  exit 1
+fi
+
+echo -e "[${app_name_fmt}] Creating Fusuma configuration directory..."
+mkdir -p "${target_dir}"
+
+echo -e "[${app_name_fmt}] Installing Fusuma configuration..."
+cp "${source_file}" "${target_file}"
+
+echo -e "[${app_name_fmt}] Deleting cloned repository from ${temp_dir}..."
+rm -rf "${temp_dir}"
 
 echo -e "[${app_name_fmt}] Fusuma installation completed."
