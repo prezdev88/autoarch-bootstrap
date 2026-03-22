@@ -2,7 +2,7 @@
 
 app_name="picom"
 app_name_fmt="\033[1;32m${app_name}\033[0m"
-repo_url="https://github.com/prezdev88/picom.git"
+repo_url="https://github.com/prezdev88/picom-config.git"
 temp_dir="/tmp/picom-config-setup"
 target_dir="${HOME}/.config/picom"
 target_file="${target_dir}/picom.conf"
